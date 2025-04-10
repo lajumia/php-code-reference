@@ -2,7 +2,7 @@
 
 ## 01 array() method
 
-You can create 3 different types of arrays using the `array()` method:
+We can create 3 different types of arrays using the `array()` method:
 
 1. **Indexed Array**
 
@@ -43,8 +43,81 @@ You can create 3 different types of arrays using the `array()` method:
 ---
 
 **Note:**  
-You cannot use `null` or a boolean as a key in an array (they get converted automatically):
+We cannot use `null` or a boolean as a key in an array (they get converted automatically):
 
 - `true` becomes `1`
 - `false` becomes `0`
 - `null` becomes `""` (an empty string)
+
+## 02 array_change_key_case() method
+
+The `array_change_key_case()` function is used to change all keys in an array to **lowercase** or **uppercase**.
+
+### 🔹 Syntax:
+
+```php
+array_change_key_case(array $array, int $case = CASE_LOWER): array
+```
+
+### 🔹 Parameters:
+
+- **$array** _(required)_: The array whose keys you want to change.
+- **$case** _(optional)_: The desired case for the keys. Use one of:
+  - `CASE_LOWER` (default)
+  - `CASE_UPPER`
+
+### 🔹 Return Value:
+
+Returns an array with all keys converted to the specified case.
+
+### 🔹 Example 1: Convert keys to lowercase
+
+```php
+$person = array(
+    "Name" => "Alice",
+    "AGE" => 30,
+    "City" => "London"
+);
+
+$lower = array_change_key_case($person, CASE_LOWER);
+print_r($lower);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [name] => Alice
+    [age] => 30
+    [city] => London
+)
+```
+
+### 🔹 Example 2: Convert keys to UPPERCASE
+
+```php
+$person = array(
+    "Name" => "Alice",
+    "Age" => 30,
+    "City" => "London"
+);
+
+$upper = array_change_key_case($person, CASE_UPPER);
+print_r($upper);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [NAME] => Alice
+    [AGE] => 30
+    [CITY] => London
+)
+```
+
+---
+
+**Note:** Only the keys of the **first level** of the array will be changed. It does not affect nested arrays.
