@@ -1,7 +1,7 @@
 # php-code-reference
 
-<a href="#01-array-method"><button>01 array() method</button></a>
-<a href="#02-array_change_key_case-method"><button>02 array_change_key_case() method</button></a>
+1. [01 array() method](#01-array-method)
+2. [02 array_change_key_case() method](#02-array_change_key_case-method)
 
 ## 01 array() method
 
@@ -51,10 +51,8 @@ We cannot use `null` or a boolean as a key in an array (they get converted autom
 - `true` becomes `1`
 - `false` becomes `0`
 - `null` becomes `""` (an empty string)
-<div>
-  <button onclick="location.href='#php-code-reference'">Back to top</button>
 
-</div>
+[Back to Top](#php-code-reference)
 
 ## 02 `array_change_key_case()` method
 
