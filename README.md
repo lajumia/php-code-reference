@@ -118,6 +118,86 @@ Array
 )
 ```
 
+## Use Cases for `array_change_key_case()`
+
+### 1. **Case-insensitive key handling**
+
+When you're getting array data from an external source (like an API, CSV, or database) where the key casing is inconsistent, you can normalize all keys before processing.
+
+```php
+// Example from CSV/API
+$user = [
+    "Name" => "John",
+    "email" => "john@example.com",
+    "AGE" => 25
+];
+
+// Normalize keys
+$user = array_change_key_case($user, CASE_LOWER);
+
+echo $user['name'];  // works regardless of original key case
+```
+
+---
+
+### 2. **Prevent errors due to key case mismatch**
+
+When you're working in a large app or importing data from multiple sources, a mismatch in key casing (`Name` vs `name`) can cause bugs.
+
+```php
+// Form submission or imported data
+$data = [
+    "Name" => "Sarah",
+    "Age" => 28
+];
+
+// Unified access
+$data = array_change_key_case($data, CASE_LOWER);
+echo $data['name']; // avoids writing: $data['Name']
+```
+
+---
+
+### 3. **Standardize keys before merging arrays**
+
+When merging multiple arrays with keys like `Name`, `name`, `NAME`, standardizing key case prevents key duplication or overwriting.
+
+```php
+$a = ["Name" => "Tom"];
+$b = ["name" => "Jerry"];
+
+$a = array_change_key_case($a, CASE_LOWER);
+$b = array_change_key_case($b, CASE_LOWER);
+
+$merged = array_merge($a, $b); // No duplicate keys
+```
+
+---
+
+### 4. **Data sanitization for storage or comparison**
+
+You might want to store array keys in a database or file in a unified format (all lowercase), especially for search and filter features.
+
+```php
+// Example for consistent search filter:
+$filter = array_change_key_case($_GET, CASE_LOWER);
+if (isset($filter['category'])) {
+    // do something
+}
+```
+
+---
+
+### 5. **Building APIs or working with frontend apps**
+
+If you're exposing or consuming APIs, key case consistency is crucial, especially when JavaScript objects typically use lowercase or camelCase keys.
+
+```php
+// Consistent JSON response keys
+$response = array_change_key_case($data, CASE_LOWER);
+echo json_encode($response);
+```
+
 ---
 
 **Note:** Only the keys of the **first level** of the array will be changed. It does not affect nested arrays.
