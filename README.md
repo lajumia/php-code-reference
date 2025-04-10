@@ -1,10 +1,7 @@
 # php-code-reference
 
-<div>
-  <button onclick="location.href='#01-array-method'">01 array() method</button>
-  <button onclick="location.href='#02-array_change_key_case-method'">02 array_change_key_case() method</button>
-
-</div>
+<a href="#01-array-method"><button>01 array() method</button></a>
+<a href="#02-array_change_key_case-method"><button>02 array_change_key_case() method</button></a>
 
 ## 01 array() method
 
