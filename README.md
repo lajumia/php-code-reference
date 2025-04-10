@@ -49,7 +49,7 @@ We cannot use `null` or a boolean as a key in an array (they get converted autom
 - `false` becomes `0`
 - `null` becomes `""` (an empty string)
 
-## 02 array_change_key_case() method
+## 02 `array_change_key_case()` method
 
 The `array_change_key_case()` function is used to change all keys in an array to **lowercase** or **uppercase**.
 
@@ -169,7 +169,8 @@ $b = ["name" => "Jerry"];
 $a = array_change_key_case($a, CASE_LOWER);
 $b = array_change_key_case($b, CASE_LOWER);
 
-$merged = array_merge($a, $b); // No duplicate keys
+$merged = array_merge($a, $b); // array_merge() function remove duplicate for associative array not indexed array
+print_r($merged); // ourput will be ["name"=>"jerry"]
 ```
 
 ---
