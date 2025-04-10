@@ -1,5 +1,11 @@
 # php-code-reference
 
+<div>
+  <button onclick="location.href='#01-array-method'">01 array() method</button>
+  <button onclick="location.href='#02-array_change_key_case-method'">02 array_change_key_case() method</button>
+
+</div>
+
 ## 01 array() method
 
 We can create 3 different types of arrays using the `array()` method:
@@ -48,6 +54,10 @@ We cannot use `null` or a boolean as a key in an array (they get converted autom
 - `true` becomes `1`
 - `false` becomes `0`
 - `null` becomes `""` (an empty string)
+<div>
+  <button onclick="location.href='#php-code-reference'">Back to top</button>
+
+</div>
 
 ## 02 `array_change_key_case()` method
 
