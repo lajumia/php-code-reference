@@ -207,3 +207,4 @@ echo json_encode($response);
 ---
 
 **Note:** Only the keys of the **first level** of the array will be changed. It does not affect nested arrays.
+[Back to Top](#php-code-reference)
