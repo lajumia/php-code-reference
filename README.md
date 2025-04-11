@@ -4,6 +4,7 @@
 2. [ array_change_key_case() method](#02-array_change_key_case-method)
 3. [ array_chunk() method](#03-array_chunk-method)
 4. [ array_column() method](#04-array_column-method)
+5. [ array_combine() method](#05-array_combine-method)
 
 ## 01 `array()` method
 
@@ -531,5 +532,140 @@ array_multisort($prices, SORT_DESC, $products); // Sort products by price descen
 - The input array should be an indexed or associative array.
 - If the column key does not exist in one or more array elements, those elements will be excluded from the result.
 - It only works for **first-level** arrays. Nested arrays are not affected.
+
+[Back to Top](#php-code-reference)
+
+## 05 `array_combine()` method
+
+The `array_combine()` function creates an array by using one array for keys and another for its values. The number of elements in the two arrays must be equal.
+
+### 🔹 Syntax:
+
+```php
+array_combine(array $keys, array $values): array
+```
+
+### 🔹 Parameters:
+
+- **$keys** _(required)_: An array of keys to use for the new array.
+- **$values** _(required)_: An array of values to assign to the new array.
+
+### 🔹 Return Value:
+
+Returns a new array with the values from `$values` assigned to the keys from `$keys`. If the number of elements in `$keys` and `$values` does not match, `array_combine()` will return `false`.
+
+### 🔹 Example 1: Basic usage of `array_combine()`
+
+```php
+$keys = ['a', 'b', 'c'];
+$values = [1, 2, 3];
+
+$combined = array_combine($keys, $values);
+print_r($combined);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [a] => 1
+    [b] => 2
+    [c] => 3
+)
+```
+
+### 🔹 Example 2: Handling mismatched array sizes
+
+```php
+$keys = ['a', 'b'];
+$values = [1, 2, 3]; // More values than keys
+
+$combined = array_combine($keys, $values);
+if ($combined === false) {
+    echo "Error: Arrays do not have the same number of elements.";
+}
+```
+
+**Output:**
+
+```php
+Error: Arrays do not have the same number of elements.
+```
+
+### 🔹 Example 3: Using `array_combine()` to create an associative array with different data types
+
+```php
+$keys = ['id', 'name', 'age'];
+$values = [101, 'Alice', 30];
+
+$combined = array_combine($keys, $values);
+print_r($combined);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [id] => 101
+    [name] => Alice
+    [age] => 30
+)
+```
+
+## ✅ Use Cases for `array_combine()`
+
+### 1. **Creating an associative array from two separate arrays**
+
+When you have two arrays: one with keys and one with values, `array_combine()` is a convenient way to combine them into a single associative array.
+
+```php
+$keys = ['id', 'name', 'age'];
+$values = [101, 'Alice', 30];
+
+$user = array_combine($keys, $values);
+```
+
+### 2. **Mapping arrays to a specific structure**
+
+If you have an array of keys and an array of values (e.g., database column names and their corresponding values), `array_combine()` can help map these together.
+
+```php
+$columns = ['name', 'price', 'quantity'];
+$values = ['Laptop', 1500, 5];
+
+$product = array_combine($columns, $values);
+```
+
+### 3. **Transforming indexed arrays into associative arrays**
+
+If you need to create a more readable associative array, `array_combine()` can help by turning simple indexed arrays into associative ones.
+
+```php
+$names = ['Peter', 'Paul', 'Mary'];
+$ages = [30, 25, 28];
+
+$people = array_combine($names, $ages);
+```
+
+### 4. **Validating input data before storing**
+
+When handling user input or API data, you can ensure that the data structure is valid by combining arrays of keys and values and verifying their length.
+
+```php
+$keys = ['username', 'password', 'email'];
+$values = ['johndoe', 'password123', 'john@example.com'];
+
+$userData = array_combine($keys, $values);
+```
+
+---
+
+### ⚠️ Notes:
+
+- Both `$keys` and `$values` must have the same number of elements. If they don’t, `array_combine()` will return `false`.
+- The keys in the resulting array can be any data type (integers, strings).
+- `array_combine()` does not check for duplicate keys, so if your `$keys` array contains duplicates, the later value will overwrite the previous one.
 
 [Back to Top](#php-code-reference)
