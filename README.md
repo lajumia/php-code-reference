@@ -5,6 +5,7 @@
 3. [ array_chunk() method](#03-array_chunk-method)
 4. [ array_column() method](#04-array_column-method)
 5. [ array_combine() method](#05-array_combine-method)
+6. [ array_count_values() method](#06-array_count_values-method)
 
 ## 01 `array()` method
 
@@ -667,5 +668,199 @@ $userData = array_combine($keys, $values);
 - Both `$keys` and `$values` must have the same number of elements. If they don’t, `array_combine()` will return `false`.
 - The keys in the resulting array can be any data type (integers, strings).
 - `array_combine()` does not check for duplicate keys, so if your `$keys` array contains duplicates, the later value will overwrite the previous one.
+
+[Back to Top](#php-code-reference)
+
+## 06 `array_count_values()` method
+
+The `array_count_values()` function counts all the values of an array and returns an associative array where the keys are the original array's values, and the values are the count of how many times each value occurred.
+
+### 🔹 Syntax:
+
+```php
+array_count_values(array $array): array
+```
+
+### 🔹 Parameters:
+
+- **$array** _(required)_: The input array whose values need to be counted.
+
+### 🔹 Return Value:
+
+Returns an associative array where the keys are the unique values from the input array, and the values are the count of occurrences of those values. If the input array is empty, it returns an empty array.
+
+### 🔹 Example 1: Count occurrences of values in an array
+
+```php
+$fruits = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana'];
+
+$counted = array_count_values($fruits);
+print_r($counted);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [apple] => 2
+    [banana] => 3
+    [orange] => 1
+)
+```
+
+### 🔹 Example 2: Count occurrences of numeric values
+
+```php
+$numbers = [1, 2, 2, 3, 3, 3, 4];
+
+$counted = array_count_values($numbers);
+print_r($counted);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [1] => 1
+    [2] => 2
+    [3] => 3
+    [4] => 1
+)
+```
+
+### 🔹 Example 3: Count occurrences of boolean values
+
+```php
+$values = [true, false, true, true, false];
+
+$counted = array_count_values($values);
+print_r($counted);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [1] => 3
+    [0] => 2
+)
+```
+
+### 🔹 Example 4: Empty array
+
+```php
+$empty = [];
+
+$counted = array_count_values($empty);
+print_r($counted);
+```
+
+**Output:**
+
+```php
+Array
+(
+)
+```
+
+## ✅ Use Cases for `array_count_values()`
+
+### 1. **Counting the frequency of elements in an array**
+
+When you need to count how often each item appears in an array, `array_count_values()` provides a quick and easy solution.
+
+```php
+$votes = ['Alice', 'Bob', 'Alice', 'Charlie', 'Alice', 'Bob'];
+
+$voteCount = array_count_values($votes);
+print_r($voteCount);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [Alice] => 3
+    [Bob] => 2
+    [Charlie] => 1
+)
+```
+
+### 2. **Identifying duplicates in an array**
+
+By counting the occurrences of values, you can easily identify duplicates and analyze the distribution of values.
+
+```php
+$items = ['apple', 'banana', 'orange', 'banana', 'banana', 'apple'];
+
+$duplicates = array_count_values($items);
+print_r($duplicates);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [apple] => 2
+    [banana] => 3
+    [orange] => 1
+)
+```
+
+### 3. **Grouping items by their frequency**
+
+If you want to group items by how often they occur, `array_count_values()` can help provide this data in a straightforward way.
+
+```php
+$colors = ['red', 'blue', 'red', 'green', 'blue', 'blue'];
+
+$colorCount = array_count_values($colors);
+print_r($colorCount);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [red] => 2
+    [blue] => 3
+    [green] => 1
+)
+```
+
+### 4. **Analyzing survey or poll data**
+
+When analyzing survey responses or poll data, `array_count_values()` is useful for counting how many times each option was selected.
+
+```php
+$responses = ['yes', 'no', 'yes', 'yes', 'no'];
+
+$responseCount = array_count_values($responses);
+print_r($responseCount);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [yes] => 3
+    [no] => 2
+)
+```
+
+---
+
+### ⚠️ Notes:
+
+- The function works with both indexed and associative arrays.
+- The resulting array will have the unique values of the input array as the keys, and the number of times they appeared as the corresponding values.
+- If an input array contains different types (e.g., strings and integers), they will be treated as separate keys.
 
 [Back to Top](#php-code-reference)
