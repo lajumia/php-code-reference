@@ -1,9 +1,9 @@
 # php-code-reference
 
-1. [01 array() method](#01-array-method)
-2. [02 array_change_key_case() method](#02-array_change_key_case-method)
+1. [ array() method](#01-array-method)
+2. [ array_change_key_case() method](#02-array_change_key_case-method)
 
-## 01 array() method
+## 01 `array()` method
 
 We can create 3 different types of arrays using the `array()` method:
 
@@ -123,7 +123,7 @@ Array
 )
 ```
 
-## Use Cases for `array_change_key_case()`
+## ✅ Use Cases for `array_change_key_case()`
 
 ### 1. **Case-insensitive key handling**
 
@@ -209,3 +209,143 @@ echo json_encode($response);
 **Note:** Only the keys of the **first level** of the array will be changed. It does not affect nested arrays.
 
 [Back to Top](#php-code-reference)
+
+## 03 `array_chunk()` Method
+
+The `array_chunk()` function splits an array into smaller arrays (chunks) of a specified size.
+
+### 🔹 Syntax:
+
+```php
+array_chunk(array $array, int $length, bool $preserve_keys = false): array
+```
+
+### 🔹 Parameters:
+
+- **$array** _(required)_: The input array to split.
+- **$length** _(required)_: The size of each chunk.
+- **$preserve_keys** _(optional)_:
+  - `false` (default): Resets keys in the resulting chunks.
+  - `true`: Preserves original keys from the input array.
+
+### 🔹 Return Value:
+
+Returns a multidimensional array containing the chunks.
+
+### 🔹 Example 1: Chunk array without preserving keys
+
+```php
+$colors = ["red", "green", "blue", "yellow", "purple"];
+$chunks = array_chunk($colors, 2);
+
+print_r($chunks);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [0] => Array
+        (
+            [0] => red
+            [1] => green
+        )
+
+    [1] => Array
+        (
+            [0] => blue
+            [1] => yellow
+        )
+
+    [2] => Array
+        (
+            [0] => purple
+        )
+)
+```
+
+### 🔹 Example 2: Chunk associative array with preserved keys
+
+```php
+$data = [
+    10 => "Apple",
+    20 => "Banana",
+    30 => "Mango",
+    40 => "Orange"
+];
+
+$chunks = array_chunk($data, 2, true);
+
+print_r($chunks);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [0] => Array
+        (
+            [10] => Apple
+            [20] => Banana
+        )
+
+    [1] => Array
+        (
+            [30] => Mango
+            [40] => Orange
+        )
+)
+```
+
+## ✅ Use Cases for `array_chunk()`
+
+### 1. Paginating large data sets
+
+```php
+$products = get_all_products(); // returns 100 items
+$pages = array_chunk($products, 10); // divide into 10 per page
+```
+
+### 2. Splitting data for batch processing
+
+```php
+$emails = ["a@example.com", "b@example.com", "c@example.com", "d@example.com"];
+$batches = array_chunk($emails, 2);
+
+foreach ($batches as $batch) {
+    send_bulk_email($batch);
+}
+```
+
+### 3. Creating grid layouts (e.g., 3 items per row)
+
+```php
+$items = [1, 2, 3, 4, 5, 6];
+$rows = array_chunk($items, 3); // 3 items per row
+```
+
+### 4. Preserve keys when key-based access is needed
+
+```php
+$users = [
+    101 => "Alice",
+    102 => "Bob",
+    103 => "Charlie"
+];
+
+$chunks = array_chunk($users, 2, true);
+```
+
+### ⚠️ Note
+
+- Only works on the **first level** of the array.
+- It **does not modify the original array**.
+
+[Back to Top](#php-code-reference)
+
+```
+
+You can now use this in your `.md` file directly. Let me know if you need anything else!
+```
