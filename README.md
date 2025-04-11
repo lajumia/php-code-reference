@@ -3,7 +3,7 @@
 1. [ array() method](#01-array-method)
 2. [ array_change_key_case() method](#02-array_change_key_case-method)
 3. [ array_chunk() method](#03-array_chunk-method)
-4. [ array_column() method](#03-array_column-method)
+4. [ array_column() method](#04-array_column-method)
 
 ## 01 `array()` method
 
