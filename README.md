@@ -3,6 +3,7 @@
 1. [ array() method](#01-array-method)
 2. [ array_change_key_case() method](#02-array_change_key_case-method)
 3. [ array_chunk() method](#03-array_chunk-method)
+4. [ array_column() method](#03-array_column-method)
 
 ## 01 `array()` method
 
@@ -346,7 +347,189 @@ $chunks = array_chunk($users, 2, true);
 
 [Back to Top](#php-code-reference)
 
+## 04 `array_column()` method
+
+The `array_column()` function returns the values from a single column of the input array, identified by the column key.
+
+### 🔹 Syntax:
+
+```php
+array_column(array $array, mixed $column_key, mixed $index_key = null): array
 ```
 
-You can now use this in your `.md` file directly. Let me know if you need anything else!
+### 🔹 Parameters:
+
+- **$array** _(required)_: The input array.
+- **$column_key** _(required)_: The column key whose values you want to extract.
+- **$index_key** _(optional)_: The key to use for the index of the returned array. If not provided, numeric indices will be used.
+
+### 🔹 Return Value:
+
+Returns an indexed array of values from the specified column in the input array. If `$index_key` is specified, the values will be indexed by this key.
+
+### 🔹 Example 1: Get a column of values from an indexed array
+
+```php
+$users = [
+    ['id' => 1, 'name' => 'Alice', 'age' => 25],
+    ['id' => 2, 'name' => 'Bob', 'age' => 30],
+    ['id' => 3, 'name' => 'Charlie', 'age' => 35]
+];
+
+$names = array_column($users, 'name');
+print_r($names);
 ```
+
+**Output:**
+
+```php
+Array
+(
+    [0] => Alice
+    [1] => Bob
+    [2] => Charlie
+)
+```
+
+### 🔹 Example 2: Get a column of values indexed by another column
+
+```php
+$users = [
+    ['id' => 1, 'name' => 'Alice', 'age' => 25],
+    ['id' => 2, 'name' => 'Bob', 'age' => 30],
+    ['id' => 3, 'name' => 'Charlie', 'age' => 35]
+];
+
+$namesById = array_column($users, 'name', 'id');
+print_r($namesById);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [1] => Alice
+    [2] => Bob
+    [3] => Charlie
+)
+```
+
+### 🔹 Example 3: Get a column of values from a multi-dimensional associative array
+
+```php
+$products = [
+    ['id' => 1, 'name' => 'Laptop', 'price' => 1500],
+    ['id' => 2, 'name' => 'Smartphone', 'price' => 800],
+    ['id' => 3, 'name' => 'Tablet', 'price' => 600]
+];
+
+$prices = array_column($products, 'price');
+print_r($prices);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [0] => 1500
+    [1] => 800
+    [2] => 600
+)
+```
+
+### 🔹 Example 4: Get a column of values with the specified index key
+
+```php
+$products = [
+    ['id' => 1, 'name' => 'Laptop', 'price' => 1500],
+    ['id' => 2, 'name' => 'Smartphone', 'price' => 800],
+    ['id' => 3, 'name' => 'Tablet', 'price' => 600]
+];
+
+$productsIndexedById = array_column($products, 'name', 'id');
+print_r($productsIndexedById);
+```
+
+**Output:**
+
+```php
+Array
+(
+    [1] => Laptop
+    [2] => Smartphone
+    [3] => Tablet
+)
+```
+
+## ✅ Use Cases for `array_column()`
+
+### 1. **Extract specific columns from an array of data**
+
+When you have a multi-dimensional array (like a result set from a database) and you want to extract a particular column, `array_column()` makes it easier to retrieve the data.
+
+```php
+// Example: Get an array of product prices from an array of product details
+$products = [
+    ['id' => 1, 'name' => 'Laptop', 'price' => 1500],
+    ['id' => 2, 'name' => 'Smartphone', 'price' => 800],
+    ['id' => 3, 'name' => 'Tablet', 'price' => 600]
+];
+
+$prices = array_column($products, 'price');
+```
+
+### 2. **Indexing an array by a key**
+
+If you want to index the result of `array_column()` by another column (e.g., to map items by their IDs), you can pass the column you want to use as the index.
+
+```php
+$users = [
+    ['id' => 1, 'name' => 'Alice', 'email' => 'alice@example.com'],
+    ['id' => 2, 'name' => 'Bob', 'email' => 'bob@example.com'],
+    ['id' => 3, 'name' => 'Charlie', 'email' => 'charlie@example.com']
+];
+
+$usersById = array_column($users, 'name', 'id');
+```
+
+### 3. **Working with a list of associative arrays**
+
+You may use `array_column()` when dealing with large datasets or results from a database where each row is an associative array. It's a quick way to retrieve values from a specific column.
+
+```php
+// Extracting specific columns for analysis
+$orders = [
+    ['order_id' => 101, 'product_name' => 'Laptop', 'total_price' => 1500],
+    ['order_id' => 102, 'product_name' => 'Smartphone', 'total_price' => 800]
+];
+
+$productNames = array_column($orders, 'product_name');
+```
+
+### 4. **Sorting by column**
+
+After extracting a column using `array_column()`, you can use the result for sorting operations.
+
+```php
+// Example: Sort products by price
+$products = [
+    ['id' => 1, 'name' => 'Laptop', 'price' => 1500],
+    ['id' => 2, 'name' => 'Smartphone', 'price' => 800],
+    ['id' => 3, 'name' => 'Tablet', 'price' => 600]
+];
+
+$prices = array_column($products, 'price');
+array_multisort($prices, SORT_DESC, $products); // Sort products by price descending
+```
+
+---
+
+### ⚠️ Note
+
+- The input array should be an indexed or associative array.
+- If the column key does not exist in one or more array elements, those elements will be excluded from the result.
+- It only works for **first-level** arrays. Nested arrays are not affected.
+
+[Back to Top](#php-code-reference)
