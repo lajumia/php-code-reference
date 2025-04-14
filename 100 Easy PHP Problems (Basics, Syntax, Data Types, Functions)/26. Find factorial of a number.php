@@ -4,14 +4,14 @@ $number = 5;
 
 function factorial($n){
 
-    if($n < 0){
-        return -1;
-    }else{
+    $factorial = 1;
 
-        $result = $n * factorial($n-1);
-        echo $result;
-        
+    for($i=1; $i<=$n; $i++){
+        $factorial *=$i;
+        echo $factorial . PHP_EOL;
+    
     }
+
 
 }
 
