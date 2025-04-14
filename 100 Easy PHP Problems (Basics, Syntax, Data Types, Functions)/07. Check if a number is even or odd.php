@@ -4,23 +4,19 @@
 
 <?php
 
-$a = 34;
-$b = 234;
+function check_even_or_od($number){
 
-function find_max_number($number1, $number2){
-
-    if($number1 == $number2){
-    echo "The number is equal ";
-
-    }elseif($number1 > $number2){
-        echo "The larger Number is ". $number1;
+    if($number % 2 == 0){
+        echo "Even Number";
     }else{
-        echo "The larger Number is ". $number2;
+       echo "Odd Number";
     }
 
 }
-
-find_max_number($a,$b);// The larger Number is 234
+check_even_or_od(10);//Even Number
+echo "<br>";
+check_even_or_od(13);//Odd Number
 
 ?>
-
+</body>
+</html>
