@@ -14,7 +14,7 @@ function check_armstrong(){
     $sum = 0;
 
     for($i=0;$i<=$number_count-1;$i++){
-        $sum += paw($number[$i],$number_count)
+        $sum += paw($number[$i],$number_count);
     }
 
     if($sum == $number){
