@@ -1,0 +1,2 @@
+header("Location: URL");
+exit();
