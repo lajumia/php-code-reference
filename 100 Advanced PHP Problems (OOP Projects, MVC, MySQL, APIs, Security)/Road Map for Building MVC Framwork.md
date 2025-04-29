@@ -44,6 +44,18 @@ Of course! Here's your **Laravel-like Framework Step-by-Step Roadmap** perfectly
   - Create form validation class like `Validator`
 - **Environment Config (.env)**
   - Parse `.env` file to load settings
+    
+✅ Key Topics to Tackle Next
+
+Topic	Description
+Routing System (Dynamic)	Build a class that can handle routes with parameters, like /user/{id}.
+Controller Classes	Organize request logic into classes and methods.
+Views with Blade-style Templates	Create a simple templating engine (or integrate one).
+Autoloading with PSR-4	Set up Composer autoloading properly.
+Request & Response Objects	Handle input data cleanly and send structured responses.
+Dependency Injection (Basic)	Learn how services are passed automatically into classes.
+Error & Exception Handling	Create friendly error pages and logs.
+Middleware System	Add auth, logging, etc., that run before a controller executes.
 
 ---
 
